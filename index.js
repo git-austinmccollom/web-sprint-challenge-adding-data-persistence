@@ -28,8 +28,8 @@ server.post("/api/resource", (req, res) => {
     })
 })
 
-server.post("/api/project/:id/task", (req, res) => {
-    dbFun.addTask(req.params.id, req.body)
+server.post("/api/task", (req, res) => {
+    dbFun.addTask(req.body)
     .then( dbRes => {
         res.status(201).json(dbRes)
     })
@@ -59,6 +59,15 @@ server.get("/api/resource", (req, res) => {
     })
 })
 
+server.get("/api/task", (req, res) => {
+    dbFun.getTasks()
+    .then( dbRes => {
+        res.status(201).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
 
 
 
