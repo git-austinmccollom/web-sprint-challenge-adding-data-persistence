@@ -38,6 +38,16 @@ server.post("/api/task", (req, res) => {
     })
 })
 
+server.post("/api/add-resource-to-project", (req, res) => {
+    dbFun.addProjectResource(req.body)
+    .then( dbRes => {
+        res.status(201).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
+
 //Read
 server.get("/api/project", (req, res) => {
     dbFun.getProjects()

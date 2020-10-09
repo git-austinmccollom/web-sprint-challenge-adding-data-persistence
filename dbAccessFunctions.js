@@ -4,6 +4,7 @@ module.exports = {
     addProject,
     addResource,
     addTask,
+    addProjectResource,
     getResources,
     getProjects,
     getTasks
@@ -21,6 +22,10 @@ function addResource(resource) {
 
 function addTask(task) {
     return db('task').insert(task)
+}
+
+function addProjectResource(association) {
+    return db('project_resource').insert(association)
 }
 
 //Read
