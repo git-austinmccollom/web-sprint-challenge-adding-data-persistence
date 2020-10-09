@@ -18,6 +18,26 @@ server.post("/api/project", (req, res) => {
     })
 })
 
+server.post("/api/resource", (req, res) => {
+    dbFun.addResource(req.body)
+    .then( dbRes => {
+        res.status(201).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
+
+server.post("/api/project/:id/task", (req, res) => {
+    dbFun.addTask(req.params.id, req.body)
+    .then( dbRes => {
+        res.status(201).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
+
 //Read
 server.get("/api/project", (req, res) => {
     dbFun.getProjects()
@@ -28,6 +48,19 @@ server.get("/api/project", (req, res) => {
         res.status(500).json(dbErr)
     })
 })
+
+server.get("/api/resource", (req, res) => {
+    dbFun.getResources()
+    .then( dbRes => {
+        res.status(201).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
+
+
+
 
 server.get("/", (req, res) => {
     res.status(200).json({hello: "Hello World" });
